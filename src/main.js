@@ -84,14 +84,14 @@ app.innerHTML = `
 
     <section class="biryani-feature" aria-labelledby="biryani-feature-title">
       <div class="biryani-feature-inner">
-        <div class="biryani-feature-photo"><img src="./images/ghee-biryani.png" alt="Maifil-style ghee biryani served in a copper pot beside the Konkan coast" loading="lazy" /><span class="biryani-photo-caption"><span class="biryani-caption-star">★</span><span><strong>A guest favourite</strong><small>Maifil’s Special Ghee Biryani</small></span></span></div>
+        <div class="biryani-feature-photo image-reveal"><img src="./images/ghee-biryani.png" alt="Maifil-style ghee biryani served in a copper pot beside the Konkan coast" loading="lazy" /><span class="biryani-photo-caption"><span class="biryani-caption-star">★</span><span><strong>A guest favourite</strong><small>Maifil’s Special Ghee Biryani</small></span></span></div>
         <div class="biryani-feature-copy"><p class="biryani-eyebrow"><span></span>THE ONE THEY COME BACK FOR</p><h2 id="biryani-feature-title">Good things take time. <em>Biryani is one of them.</em></h2><p>Fragrant rice, warming spices and that unmistakable ghee finish. Settle in for a plate worth slowing down for.</p><div class="biryani-feature-actions"><a href="#menu" class="biryani-menu-link">Discover the menu <span aria-hidden="true">↗</span></a><a href="${orderUrl('Special Ghee Biryani')}" class="biryani-wa-link" target="_blank" rel="noreferrer">${icon('whatsapp', 17)} Order this favourite</a></div><span class="biryani-signature">MAIFIL · ALIBAG</span></div>
       </div>
     </section>
 
     <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20" aria-labelledby="bestsellers-heading">
       <div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p class="text-xs font-bold uppercase tracking-[.18em] text-maifil-red">From our kitchen</p><h2 id="bestsellers-heading" class="mt-2 font-heading text-3xl font-semibold tracking-tight sm:text-4xl">Chef’s bestsellers</h2></div><p class="max-w-md text-sm leading-6 text-stone-600">The dishes guests come back for. Made to order, served generously, and best enjoyed together.</p></div>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">${specialties.map((item) => { const crops = { biryani: ['0%', '0%'], seafood: ['-50%', '0%'], tandoori: ['0%', '-50%'], chinese: ['-50%', '-50%'] }; const [cropX, cropY] = crops[item.image]; return `<article class="group overflow-hidden rounded-2xl bg-white shadow-card transition hover:-translate-y-1 hover:shadow-lift"><div class="menu-photo relative h-44 overflow-hidden"><img class="photo-crop" src="./images/menu-contact-sheet.png" alt="${item.name}" style="--crop-x:${cropX};--crop-y:${cropY}" /><span class="absolute left-3 top-3 z-10 rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-stone-700 shadow-card">${item.badge}</span></div><div class="p-4"><div class="flex items-start justify-between gap-2"><h3 class="font-heading text-base font-semibold">${item.name}</h3><span class="shrink-0 rounded-lg bg-amber-50 px-2 py-1 text-sm font-bold text-maifil-red">₹${item.price}</span></div><p class="mt-2 min-h-10 text-xs leading-5 text-stone-600">${item.description}</p><a class="mt-4 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#18794E] px-3 text-xs font-semibold text-white transition hover:bg-green-800" href="${orderUrl(item.name)}" target="_blank" rel="noreferrer">${icon('whatsapp', 15)} Order via WhatsApp</a></div></article>`; }).join('')}</div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">${specialties.map((item) => { const crops = { biryani: ['0%', '0%'], seafood: ['-50%', '0%'], tandoori: ['0%', '-50%'], chinese: ['-50%', '-50%'] }; const [cropX, cropY] = crops[item.image]; return `<article class="group overflow-hidden rounded-2xl bg-white shadow-card transition hover:-translate-y-1 hover:shadow-lift"><div class="menu-photo image-reveal relative h-44 overflow-hidden"><img class="photo-crop" src="./images/menu-contact-sheet.png" alt="${item.name}" style="--crop-x:${cropX};--crop-y:${cropY}" /><span class="absolute left-3 top-3 z-10 rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-stone-700 shadow-card">${item.badge}</span></div><div class="p-4"><div class="flex items-start justify-between gap-2"><h3 class="font-heading text-base font-semibold">${item.name}</h3><span class="shrink-0 rounded-lg bg-amber-50 px-2 py-1 text-sm font-bold text-maifil-red">₹${item.price}</span></div><p class="mt-2 min-h-10 text-xs leading-5 text-stone-600">${item.description}</p><a class="mt-4 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#18794E] px-3 text-xs font-semibold text-white transition hover:bg-green-800" href="${orderUrl(item.name)}" target="_blank" rel="noreferrer">${icon('whatsapp', 15)} Order via WhatsApp</a></div></article>`; }).join('')}</div>
       <p class="mt-4 text-[11px] leading-5 text-stone-500">Sample prices are estimates for this website concept; please ask Maifil to confirm current menu and prices.</p>
     </section>
 
@@ -161,6 +161,26 @@ const categories = {
   beverages: 'Beverages',
 };
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const photoRevealObserver = !reduceMotion && 'IntersectionObserver' in window
+  ? new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-image-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16, rootMargin: '0px 0px -36px 0px' })
+  : null;
+
+function observePhotoReveals(root = document) {
+  root.querySelectorAll('.image-reveal:not([data-reveal-observed])').forEach((element, index) => {
+    element.dataset.revealObserved = 'true';
+    element.style.setProperty('--photo-reveal-delay', `${Math.min(index % 4, 3) * 85}ms`);
+    if (photoRevealObserver) photoRevealObserver.observe(element);
+    else element.classList.add('is-image-visible');
+  });
+}
+
 let activeCategory = 'all';
 let activeIndex = 0;
 let dragStartX = null;
@@ -191,12 +211,13 @@ function renderMenu() {
       const scale = offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.82 : 0.65;
       const opacity = offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.76 : 0.34;
       return `<button class="orbit-dish-card ${offset === 0 ? 'is-active' : ''}" type="button" data-index="${index}" aria-pressed="${offset === 0}" aria-label="${dish.name}, ₹${dish.price}. ${offset === 0 ? 'Selected' : 'Select dish'}" style="--card-x:${offset * step}px;--card-z:${-Math.abs(offset) * 82}px;--card-turn:${-offset * 23}deg;--card-scale:${scale};--card-alpha:${opacity};--card-delay:${Math.abs(offset) * 65}ms">
-        <span class="orbit-card-photo">${dish.category === 'beverages' ? `<span class="orbit-drink-art">${icon('drink', 39)}</span>` : `<img src="./images/menu-contact-sheet.png" alt="" style="--crop-x:${crops[dish.category][0]};--crop-y:${crops[dish.category][1]}" />`}</span>
+        <span class="orbit-card-photo image-reveal">${dish.category === 'beverages' ? `<span class="orbit-drink-art">${icon('drink', 39)}</span>` : `<img src="./images/menu-contact-sheet.png" alt="" style="--crop-x:${crops[dish.category][0]};--crop-y:${crops[dish.category][1]}" />`}</span>
         <span class="orbit-card-copy"><span class="orbit-card-kind">${categories[dish.category]}</span><span class="orbit-card-name">${dish.name}</span><span class="orbit-card-price">₹${dish.price}</span></span>
       </button>`;
     }).join('')}
     <span class="orbit-scroll-cue" aria-hidden="true">SCROLL TO EXPLORE&nbsp; ↓</span>`;
   dishGrid.setAttribute('aria-busy', 'false');
+  observePhotoReveals(dishGrid);
   dishGrid.setAttribute('aria-label', `${activeDish.name} selected. ${items.length} dishes in ${categories[activeCategory]}. Use arrow keys, swipe, or the previous and next buttons.`);
   detailCategory.textContent = categories[activeDish.category];
   detailName.textContent = activeDish.name;
@@ -217,6 +238,7 @@ function moveDish(direction) {
 }
 
 renderMenu();
+observePhotoReveals();
 if (!reduceMotion && 'IntersectionObserver' in window) {
   const orbitObserver = new IntersectionObserver((entries) => {
     if (entries.some((entry) => entry.isIntersecting)) {
