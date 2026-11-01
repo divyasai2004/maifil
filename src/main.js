@@ -24,6 +24,8 @@ const iconPaths = {
   whatsapp: '<path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5 8.7 8.7 0 0 1-4-.9L3 21l1.9-5.2a8.5 8.5 0 1 1 16.1-4.3Z"/><path d="M8.5 9.5c.8 2.2 2.3 3.7 4.5 4.5l1.2-1.2c.3-.3.7-.4 1.1-.2l1.7.8c.4.2.6.6.5 1-.2 1.1-1.2 1.8-2.4 1.7-3.3-.4-6.6-3.7-7-7-.1-1.2.6-2.2 1.7-2.4.4-.1.8.1 1 .5l.8 1.7c.2.4.1.8-.2 1.1Z"/>',
   check: '<path d="m5 12 4 4L19 6"/>',
   drink: '<path d="M8 2h8l-.8 3.5 1.6 2.1-2.4 13.9h-4.8L7.2 7.6l1.6-2.1L8 2Z"/><path d="M8 5.5h8M9 13h6"/>',
+  menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
+  close: '<path d="m18 6-12 12M6 6l12 12"/>',
 };
 
 const icon = (name, size = 18, extra = '') => `<svg class="${extra}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${iconPaths[name]}</svg>`;
@@ -62,15 +64,15 @@ const menu = [
 const app = document.querySelector('#app');
 app.innerHTML = `
   <header class="site-nav">
-    <div class="mx-auto flex h-[78px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
-      <a href="#home" class="flex min-w-0 items-center gap-3" aria-label="Maifil Restaurant home">
-        <span class="brand-seal" aria-hidden="true">म</span>
-        <span class="truncate font-heading text-sm font-semibold leading-tight text-stone-900 sm:text-base">Maifil Restaurant<small class="mt-1 block font-body text-[9px] font-medium uppercase tracking-[.14em] text-stone-500">माइफिल रेस्टोरेंट · Alibag</small></span>
-      </a>
-      <div class="hidden items-center gap-2 rounded-full bg-amber-50 px-3 py-2 text-xs font-semibold text-stone-800 sm:flex" aria-label="4.9 out of 5 stars from 69 or more Google reviews">${icon('star', 15, 'fill-maifil-gold text-maifil-gold')}<span>4.9</span><span class="font-normal text-stone-500">Google</span></div>
-      <nav class="hidden items-center gap-6 text-sm font-medium text-stone-700 lg:flex" aria-label="Main navigation"><a href="#home">Home</a><a href="#menu">Menu</a><a href="${orderUrl()}" target="_blank" rel="noreferrer">Order online</a><a href="#visit">Find us</a></nav>
-      <div class="flex shrink-0 items-center gap-2"><a class="nav-call hidden h-10 items-center gap-2 rounded-full px-4 text-sm font-semibold sm:inline-flex" href="tel:+918369012575">${icon('phone', 15)}<span class="hidden xl:inline">Call</span></a><a class="nav-book flex h-10 items-center gap-2 rounded-full px-4 text-xs font-semibold sm:px-5 sm:text-sm" href="${orderUrl()}" target="_blank" rel="noreferrer">Book a Table <span aria-hidden="true">↗</span></a></div>
+    <div class="site-nav-inner mx-auto flex h-[78px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
+      <a href="#home" class="site-brand flex min-w-0 items-center gap-3" aria-label="Maifil Restaurant home"><span class="brand-seal" aria-hidden="true">म</span><span class="brand-lockup"><strong>Maifil Restaurant</strong><small>माइफिल रेस्टोरेंट · Alibag</small></span></a>
+      <div class="site-rating hidden items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold md:flex" aria-label="Rated 4.9 out of 5 from 69 or more Google reviews">${icon('star', 14, 'fill-maifil-gold text-maifil-gold')}<strong>4.9</strong><span>· 69+ Google reviews</span></div>
+      <div class="site-rating-mobile flex items-center gap-1.5 rounded-full px-2.5 py-2 text-[11px] font-bold sm:hidden" aria-label="Rated 4.9 stars">${icon('star', 13, 'fill-maifil-gold text-maifil-gold')}<span>4.9</span></div>
+      <nav class="site-desktop-links hidden items-center gap-5 text-sm font-medium lg:flex" aria-label="Main navigation"><a href="#home">Home</a><a href="#menu">Menu</a><a href="#reviews">Reviews</a><a href="#visit">Find us</a></nav>
+      <div class="site-nav-actions hidden shrink-0 items-center gap-2 md:flex"><a class="nav-call inline-flex h-10 items-center gap-2 rounded-full px-3 text-sm font-semibold" href="tel:+918369012575">${icon('phone', 15)}<span>Call</span></a><a class="nav-book inline-flex h-10 items-center gap-2 rounded-full px-4 text-xs font-semibold sm:px-5 sm:text-sm" href="${orderUrl()}" target="_blank" rel="noreferrer">Book a Table <span aria-hidden="true">↗</span></a></div>
+      <button class="mobile-nav-toggle inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full lg:hidden" type="button" aria-label="Open navigation menu" aria-controls="mobile-nav" aria-expanded="false">${icon('menu', 20)}</button>
     </div>
+    <nav id="mobile-nav" class="mobile-nav hidden" aria-label="Mobile navigation"><div class="mobile-nav-rating">${icon('star', 15, 'fill-maifil-gold text-maifil-gold')}<strong>4.9</strong><span>69+ Google reviews</span><span class="mobile-open-time">Open daily · 7 PM onwards</span></div><div class="mobile-nav-links"><a href="#home"><span>Home</span><span>01</span></a><a href="#menu"><span>Explore the menu</span><span>02</span></a><a href="#reviews"><span>Guest reviews</span><span>03</span></a><a href="#visit"><span>Location &amp; hours</span><span>04</span></a></div><a class="mobile-nav-order" href="${orderUrl()}" target="_blank" rel="noreferrer">${icon('whatsapp', 17)} Order or book on WhatsApp <span aria-hidden="true">↗</span></a></nav>
   </header>
 
   <main id="home" class="overflow-hidden pb-24 md:pb-0">
@@ -126,7 +128,14 @@ app.innerHTML = `
     </div></section>
   </main>
 
-  <footer class="bg-white pb-24 pt-7 md:pb-7"><div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 text-xs text-stone-500 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8"><a class="font-heading text-base font-semibold text-stone-800" href="#home">Maifil Restaurant <span class="font-normal text-stone-500">· माइफिल</span></a><span>A table worth gathering around · Alibag, Maharashtra</span><div class="flex flex-wrap gap-4"><a class="hover:text-maifil-red" href="${mapUrl}" target="_blank" rel="noreferrer">Leave a Google review</a><a class="hover:text-maifil-red" href="tel:+918369012575">Call 083690 12575</a></div><span>© ${new Date().getFullYear()} Maifil Restaurant</span></div></footer>
+  <footer class="site-footer">
+    <div class="site-footer-main mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="footer-brand"><a href="#home" class="footer-brand-link"><span class="brand-seal" aria-hidden="true">म</span><span><strong>Maifil Restaurant</strong><small>माइफिल रेस्टोरेंट · Alibag</small></span></a><p>A table worth gathering around. Come for the biryani, stay for the evening.</p><span class="footer-rating">${icon('star', 14, 'fill-maifil-gold text-maifil-gold')} <strong>4.9</strong><span>· 69+ Google reviews</span></span></div>
+      <div class="footer-links"><h2>Explore</h2><a href="#menu">Our menu</a><a href="#reviews">Guest reviews</a><a href="#visit">Find us</a><a href="${mapUrl}" target="_blank" rel="noreferrer">Get directions ${icon('arrow', 13)}</a></div>
+      <div class="footer-contact"><h2>Come by this evening</h2><p>${icon('clock', 16)} <span>Open daily<br /><strong>7:00 PM onwards</strong></span></p><p>${icon('pin', 16)} <span>Opp. Alibag Nagarpalika<br /><strong>Chendhare, Alibag 402201</strong></span></p><a class="footer-phone" href="tel:+918369012575">${icon('phone', 15)} +91 83690 12575</a></div>
+    </div>
+    <div class="site-footer-bottom mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><span>© ${new Date().getFullYear()} Maifil Restaurant</span><span>Made for good food &amp; good company.</span><a href="${mapUrl}" target="_blank" rel="noreferrer">Leave a Google review ↗</a></div>
+  </footer>
 
   <nav class="mobile-order-bar fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-stone-200 bg-white/95 p-3 pb-[calc(.75rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(0,0,0,.09)] backdrop-blur md:hidden" aria-label="Quick contact"><a class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#18794E] px-3 text-xs font-bold text-white" href="${orderUrl()}" target="_blank" rel="noreferrer">${icon('whatsapp', 17)} Order on WhatsApp</a><a class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-maifil-red px-3 text-xs font-bold text-white" href="tel:+918369012575">${icon('phone', 17)} Call restaurant</a></nav>
 `;
@@ -217,6 +226,26 @@ if (!reduceMotion && 'IntersectionObserver' in window) {
   }, { threshold: 0.14 });
   orbitObserver.observe(dishGrid);
 }
+
+const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+const mobileNav = document.querySelector('#mobile-nav');
+const setMobileNavOpen = (open) => {
+  mobileNav.classList.toggle('hidden', !open);
+  mobileNavToggle.setAttribute('aria-expanded', String(open));
+  mobileNavToggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+  mobileNavToggle.innerHTML = icon(open ? 'close' : 'menu', 20);
+};
+mobileNavToggle.addEventListener('click', () => setMobileNavOpen(mobileNavToggle.getAttribute('aria-expanded') !== 'true'));
+mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMobileNavOpen(false)));
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && mobileNavToggle.getAttribute('aria-expanded') === 'true') {
+    setMobileNavOpen(false);
+    mobileNavToggle.focus();
+  }
+});
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.site-nav') && mobileNavToggle.getAttribute('aria-expanded') === 'true') setMobileNavOpen(false);
+});
 
 document.querySelectorAll('.menu-filter').forEach((button) => button.addEventListener('click', () => {
   document.querySelectorAll('.menu-filter').forEach((filter) => {
