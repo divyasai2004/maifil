@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc">
+  <title id="title">मैफ़िल Restaurant</title>
+  <desc id="desc">A circular metallic gold emblem with an Indian arch and the Maifil name.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff1bf"/>
+      <stop offset=".24" stop-color="#c69949"/>
+      <stop offset=".48" stop-color="#ffe7a0"/>
+      <stop offset=".72" stop-color="#b78234"/>
+      <stop offset="1" stop-color="#f8d77e"/>
+    </linearGradient>
+    <filter id="soft-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.1" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <g fill="none" stroke="url(#gold)" stroke-linecap="round" stroke-linejoin="round" filter="url(#soft-glow)">
+    <circle cx="300" cy="300" r="267" stroke-width="2.3"/>
+    <path d="M265 34c11 12 23 18 35 18s24-6 35-18M282 34l18 15 18-15" stroke-width="2"/>
+    <path d="M265 566c11-12 23-18 35-18s24 6 35 18M282 566l18-15 18 15" stroke-width="2"/>
+    <path d="M246 184v-22c0-34 24-61 54-61s54 27 54 61v22M232 184h136M257 184v-19c0-24 19-43 43-43s43 19 43 43v19" stroke-width="2.4"/>
+    <path d="M300 111v22m-11-11h22" stroke-width="1.4"/>
+    <path d="M191 286h42m234 0h-42" stroke-width="1.5"/>
+    <path d="M183 286l9-5 9 5-9 5-9-5Zm234 0 9-5 9 5-9 5-9-5Z" stroke-width="1.3"/>
+    <path d="M207 349h186" stroke-width="1.4"/>
+    <path d="M276 383h48m-36 0 12 8 12-8" stroke-width="1.4"/>
+    <path d="M250 397c15 9 32 13 50 13s35-4 50-13" stroke-width="1.4"/>
+  </g>
+  <g fill="url(#gold)" text-anchor="middle">
+    <text x="300" y="279" font-family="'Nirmala UI','Noto Sans Devanagari','Kohinoor Devanagari',sans-serif" font-size="80" font-weight="600" letter-spacing="1">मैफ़िल</text>
+    <text x="300" y="333" font-family="Arial,sans-serif" font-size="22" font-weight="500" letter-spacing="8">RESTAURANT</text>
+    <text x="300" y="373" font-family="Arial,sans-serif" font-size="10.5" font-weight="500" letter-spacing="1.4">BIRYANI  •  KEBAB  •  TANDOORI  •  CHINESE</text>
+  </g>
+</svg>

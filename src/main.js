@@ -65,7 +65,7 @@ const app = document.querySelector('#app');
 app.innerHTML = `
   <header class="site-nav">
     <div class="site-nav-inner mx-auto flex h-[78px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
-      <a href="#home" class="site-brand flex min-w-0 items-center gap-3" aria-label="Maifil Restaurant home"><span class="brand-seal" aria-hidden="true">म</span><span class="brand-lockup"><strong>Maifil Restaurant</strong><small>माइफिल रेस्टोरेंट · Alibag</small></span></a>
+      <a href="#home" class="site-brand flex min-w-0 items-center gap-3" aria-label="Maifil Restaurant home"><img class="brand-seal brand-logo" src="./images/maifil-logo.svg" alt="" aria-hidden="true" /><span class="brand-lockup"><strong>Maifil Restaurant</strong><small>माइफिल रेस्टोरेंट · Alibag</small></span></a>
       <div class="site-rating hidden items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold md:flex" aria-label="Rated 4.9 out of 5 from 69 or more Google reviews">${icon('star', 14, 'fill-maifil-gold text-maifil-gold')}<strong>4.9</strong><span>· 69+ Google reviews</span></div>
       <div class="site-rating-mobile flex items-center gap-1.5 rounded-full px-2.5 py-2 text-[11px] font-bold sm:hidden" aria-label="Rated 4.9 stars">${icon('star', 13, 'fill-maifil-gold text-maifil-gold')}<span>4.9</span></div>
       <nav class="site-desktop-links hidden items-center gap-5 text-sm font-medium lg:flex" aria-label="Main navigation"><a href="#home">Home</a><a href="#menu">Menu</a><a href="#reviews">Reviews</a><a href="#visit">Find us</a></nav>
@@ -130,7 +130,7 @@ app.innerHTML = `
 
   <footer class="site-footer">
     <div class="site-footer-main mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="footer-brand"><a href="#home" class="footer-brand-link"><span class="brand-seal" aria-hidden="true">म</span><span><strong>Maifil Restaurant</strong><small>माइफिल रेस्टोरेंट · Alibag</small></span></a><p>A table worth gathering around. Come for the biryani, stay for the evening.</p><span class="footer-rating">${icon('star', 14, 'fill-maifil-gold text-maifil-gold')} <strong>4.9</strong><span>· 69+ Google reviews</span></span></div>
+      <div class="footer-brand"><a href="#home" class="footer-brand-link" aria-label="Maifil Restaurant home"><img class="brand-seal brand-logo footer-logo" src="./images/maifil-logo.svg" alt="Maifil Restaurant logo" /></a><p>A table worth gathering around. Come for the biryani, stay for the evening.</p><span class="footer-rating">${icon('star', 14, 'fill-maifil-gold text-maifil-gold')} <strong>4.9</strong><span>· 69+ Google reviews</span></span></div>
       <div class="footer-links"><h2>Explore</h2><a href="#menu">Our menu</a><a href="#reviews">Guest reviews</a><a href="#visit">Find us</a><a href="${mapUrl}" target="_blank" rel="noreferrer">Get directions ${icon('arrow', 13)}</a></div>
       <div class="footer-contact"><h2>Come by this evening</h2><p>${icon('clock', 16)} <span>Open daily<br /><strong>7:00 PM onwards</strong></span></p><p>${icon('pin', 16)} <span>Opp. Alibag Nagarpalika<br /><strong>Chendhare, Alibag 402201</strong></span></p><a class="footer-phone" href="tel:+918369012575">${icon('phone', 15)} +91 83690 12575</a></div>
     </div>

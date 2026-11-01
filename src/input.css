@@ -26,6 +26,7 @@ body { background: #FDFBF7; }
 .site-nav nav a { transition: color .2s ease,background .2s ease; }
 .site-nav nav a:hover { color: #C82333; }
 .site-nav .brand-seal { display:grid; width:45px; height:45px; flex:0 0 45px; place-items:center; border:1px solid rgba(200,35,51,.2); border-radius:50%; background:#fff; color:#C82333; font:italic 24px Georgia,serif; box-shadow:0 4px 16px rgba(60,35,20,.07); }
+.site-nav .brand-seal.brand-logo { display:block; border:0; border-radius:0; background:transparent; box-shadow:none; object-fit:contain; }
 .brand-lockup strong,.brand-lockup small { display:block; }
 .brand-lockup strong { color:#26201c; font:600 14px/1.2 Poppins,sans-serif; }
 .brand-lockup small { margin-top:4px; color:#8c8074; font:500 8px/1.2 Inter,sans-serif; letter-spacing:.13em; text-transform:uppercase; }
@@ -49,6 +50,7 @@ body { background: #FDFBF7; }
 .site-footer-main { display:grid; grid-template-columns:1.25fr .65fr 1fr; gap:clamp(30px,7vw,100px); padding-bottom:42px; }
 .footer-brand-link { display:inline-flex; align-items:center; gap:12px; color:#fff; text-decoration:none; }
 .footer-brand-link .brand-seal { width:43px; height:43px; flex-basis:43px; border-color:rgba(245,198,107,.35); background:rgba(255,255,255,.06); color:#f6d58f; box-shadow:none; }
+.footer-brand-link .brand-logo { width:128px; height:128px; flex:0 0 128px; border:0; border-radius:0; background:transparent; }
 .footer-brand-link strong,.footer-brand-link small { display:block; }
 .footer-brand-link strong { font:600 14px Poppins,sans-serif; }
 .footer-brand-link small { margin-top:4px; color:#a99b8c; font:500 8px Inter,sans-serif; letter-spacing:.14em; text-transform:uppercase; }
@@ -294,7 +296,8 @@ body { background: #FDFBF7; }
 @media (max-width: 640px) {
   html { scroll-padding-top: 72px; }
   .site-nav > div { height: 68px; gap: 8px; padding-left: 14px; padding-right: 12px; }
-  .site-nav .brand-seal { width: 39px; height: 39px; flex-basis: 39px; font-size: 20px; }
+  .site-nav .brand-seal { width: 43px; height: 43px; flex-basis: 43px; font-size: 20px; }
+  .footer-brand-link .footer-logo { width:108px; height:108px; flex-basis:108px; }
   .brand-lockup strong { font-size:13px; }
   .brand-lockup small { font-size:7px; letter-spacing:.1em; }
   .mobile-nav { right:10px; left:10px; max-width:none; padding:15px; border-radius:19px; }
@@ -347,7 +350,7 @@ body { background: #FDFBF7; }
   .site-nav .nav-book { padding: 0 9px; font-size: 12px; }
   .site-nav-inner { gap:5px; padding-right:10px; }
   .site-brand { gap:8px; }
-  .site-nav .brand-seal { width:35px; height:35px; flex-basis:35px; }
+  .site-nav .brand-seal { width:38px; height:38px; flex-basis:38px; }
   .brand-lockup strong { font-size:12px; }
   .brand-lockup small { font-size:6px; }
   .site-rating-mobile { padding-left:7px; padding-right:7px; }
